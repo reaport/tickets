@@ -1,0 +1,122 @@
+@model TicketModule.ViewModels.AdminViewModel
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Админка TicketModule</title>
+    <style>
+        body {
+            background-color: #FFC0CB; /* светло-розовый фон */
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+        h1 {
+            color: hotpink;
+            text-align: center;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 10px;
+        }
+        th, td {
+            padding: 8px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+        .header {
+            background-color: hotpink;
+            color: white;
+        }
+        .section {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        a.button, button {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: hotpink;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+        }
+        a.button:hover, button:hover {
+            background-color: deeppink;
+        }
+    </style>
+</head>
+<body>
+    <h1>Административная панель TicketModule</h1>
+
+    <div class="section">
+        <h2>Статистика</h2>
+        <p>Куплено билетов: @Model.TotalSold</p>
+        <p>Возвращено билетов: @Model.TotalReturned</p>
+    </div>
+
+    <div class="section">
+        <h2>Логи</h2>
+        @if (Model.Logs == null || !Model.Logs.Any())
+        {
+            <p>Логов нет.</p>
+        }
+        else
+        {
+            <table>
+                <tr class="header">
+                    <th>Время</th>
+                    <th>Сообщение</th>
+                </tr>
+                @foreach (var log in Model.Logs)
+                {
+                    <tr>
+                        <td>@log.Split('|')[0].Trim()</td>
+                        <td>@log</td>
+                    </tr>
+                }
+            </table>
+        }
+    </div>
+
+    <div class="section">
+        <h2>Аудит</h2>
+        @if (Model.Audit == null || !Model.Audit.Any())
+        {
+            <p>Записей аудита нет.</p>
+        }
+        else
+        {
+            <table>
+                <tr class="header">
+                    <th>Время</th>
+                    <th>TicketId</th>
+                    <th>Действие</th>
+                </tr>
+                @foreach (var entry in Model.Audit)
+                {
+                    <tr>
+                        <td>@entry.Timestamp</td>
+                        <td>@entry.TicketId</td>
+                        <td>@entry.Action</td>
+                    </tr>
+                }
+            </table>
+        }
+    </div>
+
+    <div class="section" style="text-align: center;">
+        <a class="button" href="@Url.Action("UpdateTicketStatusForm", "AdminUi")">Изменить статус билета</a>
+    </div>
+
+    <div class="section" style="text-align: center;">
+        <form method="post" action="/admin/ui/clearLogs">
+            <button type="submit">Очистить логи и аудит</button>
+        </form>
+    </div>
+</body>
+</html>
