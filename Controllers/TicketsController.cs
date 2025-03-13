@@ -5,7 +5,7 @@ using TicketModule.Services;
 namespace TicketModule.Controllers
 {
     [ApiController]
-    [Route("tickets")]
+    [Route("/")]
     public class TicketsController : ControllerBase
     {
         private readonly ITicketService _ticketService;
