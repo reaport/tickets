@@ -76,7 +76,6 @@ builder.Services.AddSwaggerGen(c =>
 builder.WebHost.ConfigureKestrel(options =>
 {
     options.ListenAnyIP(8080);
-    options.ListenAnyIP(8081, listenOptions => listenOptions.UseHttps());
 });
 
 var app = builder.Build();
