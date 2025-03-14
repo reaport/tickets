@@ -69,6 +69,7 @@ namespace TicketModule.Services
                 FlightId = purchaseInfo.FlightId,
                 Direction = $"{purchaseInfo.CityFrom} -> {purchaseInfo.CityTo}",
                 DepartureTime = purchaseInfo.TakeoffDateTime,
+                startRegisterTime = purchaseInfo.startRegisterTime,
                 AvailableSeats = new Dictionary<string, int>()
             };
             
@@ -137,6 +138,7 @@ namespace TicketModule.Services
         public string? Baggage { get; set; }
         public DateTime TakeoffDateTime { get; set; }
         public DateTime LandingDateTime { get; set; }
+        public DateTime startRegisterTime { get; set; }
     }
     
     public class SeatInfo
