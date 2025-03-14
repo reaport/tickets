@@ -109,6 +109,7 @@ namespace TicketModule.Services
                     {
                         FlightId = purchaseInfo.FlightId,
                         Direction = $"{purchaseInfo.CityFrom} -> {purchaseInfo.CityTo}",
+                        RegistrationStartTime = purchaseInfo.RegistrationStartTime,
                         DepartureTime = purchaseInfo.TakeoffDateTime,
                         AvailableSeats = new Dictionary<string, int>()
                     };
