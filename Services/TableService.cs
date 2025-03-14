@@ -138,7 +138,7 @@ namespace TicketModule.Services
         public string? Baggage { get; set; }
         public DateTime TakeoffDateTime { get; set; }
         public DateTime LandingDateTime { get; set; }
-        public DateTime startRegisterTime { get; set; }
+        public DateTime RegistrationStartTime { get; set; }
     }
     
     public class SeatInfo
