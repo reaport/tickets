@@ -26,7 +26,7 @@ if (useStubs)
 {
     // Используем заглушки для Табло и Кейтеринга
     builder.Services.AddScoped<ITableService, TableServiceStub>();
-    builder.Services.AddScoped<ICateringService, CateringServiceStub>();
+   // builder.Services.AddScoped<ICateringService, CateringServiceStub>();
 }
 else
 {
@@ -38,13 +38,14 @@ else
                        ?? throw new InvalidOperationException("Missing TableSettings:BaseUrl configuration");
     client.BaseAddress = new Uri(tableBaseUrl);
 });
+    }
 builder.Services.AddHttpClient<ICateringService, CateringService>(client =>
 {
     var cateringBaseUrl = builder.Configuration["CateringSettings:BaseUrl"]
                           ?? throw new InvalidOperationException("Missing CateringSettings:BaseUrl configuration");
     client.BaseAddress = new Uri(cateringBaseUrl);
 });
-}
+
 
 // Регистрируем основной сервис билетов
 builder.Services.AddScoped<ITicketService, TicketService>();
