@@ -6,5 +6,6 @@ namespace TicketModule.Models
         public string ?CityFrom { get; set; }
         public string ?CityTo { get; set; }
         public string ?SeatClass { get; set; }
+        public DateTime ?RegistrationStartTime { get; set; } 
     }
 }
