@@ -15,6 +15,7 @@ namespace TicketModule.Services
                 FlightId = flightId,
                 Direction = "Город А -> Город Б",
                 DepartureTime = DateTime.UtcNow.AddHours(2),
+                RegistrationStartTime = DateTime.UtcNow.AddHours(1),
                 AvailableSeats = new Dictionary<string, int>
                 {
                     { "economy", 50 },
@@ -32,6 +33,7 @@ namespace TicketModule.Services
                     FlightId = "FL001",
                     Direction = "Город А -> Город Б",
                     DepartureTime = DateTime.UtcNow.AddHours(2),
+                    RegistrationStartTime = DateTime.UtcNow.AddHours(1),
                     AvailableSeats = new Dictionary<string, int>
                     {
                         { "economy", 50 },
@@ -43,6 +45,7 @@ namespace TicketModule.Services
                     FlightId = "FL002",
                     Direction = "Город С -> Город Д",
                     DepartureTime = DateTime.UtcNow.AddHours(3),
+                    RegistrationStartTime = DateTime.UtcNow.AddHours(1),
                     AvailableSeats = new Dictionary<string, int>
                     {
                         { "economy", 60 },
